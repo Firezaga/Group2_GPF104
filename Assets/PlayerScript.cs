@@ -36,6 +36,8 @@ public class PlayerScript : MonoBehaviour
                 isGrounded = false;
             }
         }
+        if (health <= 0)
+            Time.timeScale = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,10 +49,9 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            if (health <= 0)
-                Time.timeScale = 0;
-            else if (health > 0)
+            if (health > 0)
                 health -= 25;
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -47,7 +47,10 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Time.timeScale = 0;
+            if (health <= 0)
+                Time.timeScale = 0;
+            else if (health > 0)
+                health -= 25;
         }
     }
 }

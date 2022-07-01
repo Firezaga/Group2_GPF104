@@ -220,11 +220,11 @@ GameObject:
   - component: {fileID: 654467471}
   m_Layer: 0
   m_Name: UI TEST CAMERA
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &654467471
 AudioListener:
   m_ObjectHideFlags: 0

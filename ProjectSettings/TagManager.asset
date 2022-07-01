@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Next
   - EndLine
+  - Coin
   layers:
   - Default
   - TransparentFX

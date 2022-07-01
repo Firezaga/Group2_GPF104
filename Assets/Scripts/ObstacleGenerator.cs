@@ -5,12 +5,16 @@ using UnityEngine;
 public class ObstacleGenerator : MonoBehaviour
 {
     public GameObject obstacle;
+    public PlayerScript player;
 
     public float minSpeed;
     public float maxSpeed;
     public float currentSpeed;
-
     public float speedMultiplier;
+
+    [SerializeField]
+    private int obsValue;
+    private int obsMultiplier;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,5 +40,11 @@ public class ObstacleGenerator : MonoBehaviour
     {
         float randomWait = Random.Range(0.1f, 1.2f);
         Invoke("generateObstacle", randomWait);
+    }
+
+    public void obsAddScore()
+    {
+        player.AddScore(obsValue, obsMultiplier);
+        obsMultiplier++;
     }
 }

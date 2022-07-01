@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
@@ -19,5 +20,10 @@ public class UIScript : MonoBehaviour
     {
         healthText.text = "HEALTH: " + player.health;
         scoreText.text = player.score.ToString();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

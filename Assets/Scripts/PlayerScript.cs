@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
         health = 100;
         score = 0;
         coinMultiplier = 1;
+        Time.timeScale = 1;
     }
 
     // Start is called before the first frame update

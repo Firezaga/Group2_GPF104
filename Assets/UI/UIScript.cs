@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class UIScript : MonoBehaviour
 {
     public PlayerScript player;
-    public Text healthText;
     public Text scoreText;
+    public Image healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +18,8 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "HEALTH: " + player.health;
         scoreText.text = player.score.ToString();
+        healthBar.fillAmount = (float)player.health / 100.0f;
     }
 
     public void RestartGame()

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField]
+    public CoinGenerator CoinGenerator;
+
     public float jumpForce;
 
-    [SerializeField]
     public int health;
+    public int score;
+
+    [SerializeField]
+    private int coinValue;
+    private int coinMultiplier;
 
     bool isGrounded = false;
     Rigidbody2D RB;
@@ -17,6 +22,9 @@ public class PlayerScript : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         health = 100;
+        score = 0;
+        coinMultiplier = 1;
+        Time.timeScale = 1;
     }
 
     // Start is called before the first frame update
@@ -49,9 +57,26 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            Destroy(collision.gameObject);
             if (health > 0)
                 health -= 25;
-            Destroy(collision.gameObject);
         }
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            
+            AddScore(coinValue, coinMultiplier);
+            coinMultiplier++;
+            Destroy(collision.gameObject);
+            CoinGenerator.GenerateNext();
+        }
+    }
+
+    public void AddScore(int scoreToAdd, int multiplier)
+    {
+        score += scoreToAdd * multiplier;
     }
 }

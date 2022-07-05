@@ -6,6 +6,10 @@ public class ObstacleScript : MonoBehaviour
 {
     public ObstacleGenerator obstacleGenerator;
 
+    [SerializeField]
+    private int obsScore;
+    private int obsMultiplier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,7 @@ public class ObstacleScript : MonoBehaviour
         if (collision.gameObject.CompareTag("EndLine"))
         {
             Destroy(this.gameObject);
+            obstacleGenerator.obsAddScore();
         }
     }
 }

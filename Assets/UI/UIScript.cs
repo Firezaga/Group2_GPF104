@@ -20,10 +20,13 @@ public class UIScript : MonoBehaviour
     {
         scoreText.text = player.score.ToString();
         healthBar.fillAmount = (float)player.health / 100.0f;
+
+        if (player.health <= 0)
+            SceneManager.LoadScene("GameOver");
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Game");
     }
 }

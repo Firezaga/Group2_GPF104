@@ -7,6 +7,10 @@ public class PlayerScript : MonoBehaviour
     public CoinGenerator CoinGenerator;
 
     public float jumpForce;
+    bool isGrounded;
+    bool isJumping;
+    bool jumpKeyHeld;
+    public Vector2 counterJumpForce;
 
     public int health;
     public int score;
@@ -15,7 +19,6 @@ public class PlayerScript : MonoBehaviour
     private int coinValue;
     private int coinMultiplier;
 
-    bool isGrounded = false;
     Rigidbody2D RB;
 
     private void Awake()
@@ -30,7 +33,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        jumpForce = CalculateJumpForce(Physics2D.gravity.magnitude, 15.0f);
     }
 
     // Update is called once per frame
@@ -38,22 +41,41 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isGrounded == true)
+            jumpKeyHeld = true;
+            if (isGrounded)
             {
-                RB.AddForce(Vector2.up * jumpForce);
+                isJumping = true;
                 isGrounded = false;
+                RB.AddForce(Vector2.up * jumpForce * RB.mass, ForceMode2D.Impulse);
             }
         }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            jumpKeyHeld = false;
+        }
+
+
+
         if (health <= 0)
             Time.timeScale = 0;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isJumping)
+        {
+            if (!jumpKeyHeld && Vector2.Dot(RB.velocity, Vector2.up) > 0)
+            {
+                RB.AddForce(counterJumpForce * RB.mass);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            if (isGrounded == false)
-                isGrounded = true;
+            isGrounded = true;
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
@@ -78,5 +100,10 @@ public class PlayerScript : MonoBehaviour
     public void AddScore(int scoreToAdd, int multiplier)
     {
         score += scoreToAdd * multiplier;
+    }
+
+    public static float CalculateJumpForce(float gravityStrength, float jumpHeight)
+    {
+        return Mathf.Sqrt(2 * gravityStrength * jumpHeight);
     }
 }

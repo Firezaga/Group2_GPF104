@@ -38,7 +38,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     public void GenerateNext()
     {
-        float randomWait = Random.Range(0.4f, 1.2f);
+        float randomWait = Random.Range(0.4f, 0.9f);
         Invoke("generateObstacle", randomWait);
     }
 

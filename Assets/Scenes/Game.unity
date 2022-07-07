@@ -891,6 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinGenerator: {fileID: 9196034971571638566}
   jumpForce: 700
+  counterJumpForce: {x: 0, y: -20}
   health: 0
   score: 0
   coinValue: 5
@@ -921,18 +922,18 @@ RectTransform:
   m_GameObject: {fileID: 1934841652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2111150744}
   m_Father: {fileID: 687420113}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 20, y: 20}
   m_SizeDelta: {x: 600, y: 60}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1934841654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,10 +1394,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacle: {fileID: 6687008724792615966, guid: cec91077d7969b94cb57c4dd2d925c91, type: 3}
   player: {fileID: 1791176754}
-  minSpeed: 5
-  maxSpeed: 12
+  minSpeed: 8
+  maxSpeed: 25
   currentSpeed: 0
-  speedMultiplier: 0.0015
+  speedMultiplier: 0.001
   obsValue: 5
 --- !u!1 &5593977431959502416
 GameObject:

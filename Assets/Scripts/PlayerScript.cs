@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public Vector2 counterJumpForce;
 
     public int health;
+    public int healthMax;
     public int score;
 
     [SerializeField]
@@ -24,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
-        health = 100;
+        health = healthMax;
         score = 0;
         coinMultiplier = 1;
         Time.timeScale = 1;
@@ -89,9 +90,18 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Coin"))
         {
-            
             AddScore(coinValue, coinMultiplier);
             coinMultiplier++;
+            Destroy(collision.gameObject);
+            CoinGenerator.GenerateNext();
+        }
+        if (collision.gameObject.CompareTag("Health"))
+        {
+            health += 25;
+            if (health >= healthMax)
+            {
+                health = healthMax;
+            }
             Destroy(collision.gameObject);
             CoinGenerator.GenerateNext();
         }

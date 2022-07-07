@@ -19,7 +19,7 @@ public class UIScript : MonoBehaviour
     void Update()
     {
         scoreText.text = player.score.ToString();
-        healthBar.fillAmount = (float)player.health / 100.0f;
+        healthBar.fillAmount = (float)player.health / (float)player.healthMax;
 
         if (player.health <= 0)
             SceneManager.LoadScene("GameOver");

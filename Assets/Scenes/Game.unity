@@ -746,7 +746,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721278982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.44, y: -2.32, z: 0}
+  m_LocalPosition: {x: 23.58, y: -2.2, z: 0}
   m_LocalScale: {x: 1.8726, y: 1.8726, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -785,7 +785,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
@@ -893,6 +893,7 @@ MonoBehaviour:
   jumpForce: 700
   counterJumpForce: {x: 0, y: -20}
   health: 0
+  healthMax: 100
   score: 0
   coinValue: 5
 --- !u!1 &1934841652
@@ -1393,6 +1394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacle: {fileID: 6687008724792615966, guid: cec91077d7969b94cb57c4dd2d925c91, type: 3}
+  obstacle2: {fileID: 3235726091379181425, guid: 540a35928ed4d6946803bca69cdcf5e5, type: 3}
+  obstacle3: {fileID: 3829949447868407994, guid: 51c5cae780d5d7344b5808834cb7d602, type: 3}
   player: {fileID: 1791176754}
   minSpeed: 8
   maxSpeed: 25
@@ -1497,6 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 8675788838277525013, guid: 60ac92ef42d7e95439c696efb1cea02a, type: 3}
+  health: {fileID: 3935871517559707582, guid: cabaa35c87e05d3479b6c1252f449081, type: 3}
   minSpeed: 5
   maxSpeed: 12
   currentSpeed: 0

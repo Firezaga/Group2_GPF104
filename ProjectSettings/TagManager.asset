@@ -9,6 +9,7 @@ TagManager:
   - Next
   - EndLine
   - Coin
+  - Health
   layers:
   - Default
   - TransparentFX

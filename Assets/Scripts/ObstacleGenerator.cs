@@ -5,6 +5,8 @@ using UnityEngine;
 public class ObstacleGenerator : MonoBehaviour
 {
     public GameObject obstacle;
+    public GameObject obstacle2;
+    public GameObject obstacle3;
     public PlayerScript player;
 
     public float minSpeed;
@@ -32,8 +34,22 @@ public class ObstacleGenerator : MonoBehaviour
 
     void generateObstacle()
     {
-        GameObject ObstacleIns = Instantiate(obstacle, transform.position, transform.rotation);
-        ObstacleIns.GetComponent<ObstacleScript>().obstacleGenerator = this;
+        int rand = (int)Random.Range(0.0f, 3.0f);
+        if (rand % 3 == 0)
+        {
+            GameObject ObstacleIns = Instantiate(obstacle, transform.position, transform.rotation);
+            ObstacleIns.GetComponent<ObstacleScript>().obstacleGenerator = this;
+        }
+        else if (rand % 3 == 1)
+        {
+            GameObject ObstacleIns = Instantiate(obstacle2, transform.position, transform.rotation);
+            ObstacleIns.GetComponent<ObstacleScript>().obstacleGenerator = this;
+        }
+        else if (rand % 3 == 2)
+        {
+            GameObject ObstacleIns = Instantiate(obstacle3, transform.position, transform.rotation);
+            ObstacleIns.GetComponent<ObstacleScript>().obstacleGenerator = this;
+        }
     }
 
     public void GenerateNext()

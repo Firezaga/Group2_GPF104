@@ -6,6 +6,7 @@ public class CoinGenerator : MonoBehaviour
 {
 
     public GameObject coin;
+    public GameObject health;
 
     public float minSpeed;
     public float maxSpeed;
@@ -34,8 +35,17 @@ public class CoinGenerator : MonoBehaviour
 
     void generateCoin()
     {
-        GameObject CoinIns = Instantiate(coin, transform.position, transform.rotation);
-        CoinIns.GetComponent<CoinScript>().CoinGenerator = this;
+        int rand = (int)Random.Range(0.0f, 2.0f);
+        if (rand % 2 == 0)
+        {
+            GameObject CoinIns = Instantiate(coin, transform.position, transform.rotation);
+            CoinIns.GetComponent<CoinScript>().CoinGenerator = this;
+        }
+        else if (rand % 2 == 1)
+        {
+            GameObject CoinIns = Instantiate(health, transform.position, transform.rotation);
+            CoinIns.GetComponent<HealthPUScript>().CoinGenerator = this;
+        }
     }
 
     public void GenerateNext()

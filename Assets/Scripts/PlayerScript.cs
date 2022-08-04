@@ -58,7 +58,11 @@ public class PlayerScript : MonoBehaviour
 
 
         if (health <= 0)
+        {
+            PlayerPrefs.SetInt("currentScore", score);
+            PlayerPrefs.Save();
             Time.timeScale = 0;
+        }
     }
 
     private void FixedUpdate()

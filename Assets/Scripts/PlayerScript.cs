@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     private int coinMultiplier;
 
     Rigidbody2D RB;
+    Animator animator;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         jumpForce = CalculateJumpForce(Physics2D.gravity.magnitude, 15.0f);
     }
 
@@ -48,6 +50,7 @@ public class PlayerScript : MonoBehaviour
                 isJumping = true;
                 isGrounded = false;
                 RB.AddForce(Vector2.up * jumpForce * RB.mass, ForceMode2D.Impulse);
+                animator.SetBool("isJumping", true);
             }
         }
         else if (Input.GetButtonUp("Jump"))
@@ -81,6 +84,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            animator.SetBool("isJumping", false);
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {

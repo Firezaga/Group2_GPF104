@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    private const float PARTICLE_TIMER_MAX = 0.5f;
+
     public CoinGenerator CoinGenerator;
+    public ParticleSystem obstacleParticle;
+    public ParticleSystem coinParticle;
+    public ParticleSystem healthParticle;
+    public AudioSource coinAudio;
+    public AudioSource obstacleAudio;
 
     public float jumpForce;
     bool isGrounded;
@@ -22,6 +29,7 @@ public class PlayerScript : MonoBehaviour
 
     Rigidbody2D RB;
     Animator animator;
+    
 
     private void Awake()
     {
@@ -89,17 +97,22 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(collision.gameObject);
+            obstacleParticle.Emit(50);
+            obstacleAudio.Play();
             if (health > 0)
                 health -= 25;
         }
         
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Coin"))
         {
             AddScore(coinValue, coinMultiplier);
             coinMultiplier++;
+            coinParticle.Emit(50);
+            coinAudio.Play();
             Destroy(collision.gameObject);
             CoinGenerator.GenerateNext();
         }
@@ -110,6 +123,8 @@ public class PlayerScript : MonoBehaviour
             {
                 health = healthMax;
             }
+            healthParticle.Emit(50);
+            coinAudio.Play();
             Destroy(collision.gameObject);
             CoinGenerator.GenerateNext();
         }
